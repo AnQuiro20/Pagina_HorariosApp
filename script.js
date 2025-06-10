@@ -32,6 +32,7 @@ if (clasesGuardadas) {
 }
 
 function initScheduleTable() {
+    const isMobile = window.innerWidth <= 768;
     // Crear encabezado con días
     scheduleHeader.innerHTML = '<th>Hora</th>';
     diasSemana.forEach(dia => {
@@ -209,7 +210,7 @@ editForm.onsubmit = e => {
     }
 
     clases[index] = claseEditada;
-    guardarEnLocalStorage
+    guardarEnLocalStorage();
     editModalBg.classList.remove('active');
     renderClases();
   };

@@ -596,3 +596,79 @@ thead th {
     padding: 12px 8px;
 }
 
+/* Ajustes generales para móviles */
+@media (max-width: 768px) {
+    body {
+        margin: 15px 10px;
+        padding: 0;
+        overflow-x: hidden;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    #openModalBtn {
+        width: 100%;
+        padding: 12px;
+        font-size: 1rem;
+        margin-bottom: 20px;
+    }
+
+    /* Tabla y scroll horizontal */
+    .table-container {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+        min-width: 600px;
+        /* Fuerza un ancho mínimo para mantener estructura */
+        font-size: 14px;
+    }
+
+    thead th {
+        padding: 8px 4px;
+        font-size: 0.8rem;
+    }
+
+    tbody th {
+        padding: 10px 6px;
+        width: 70px;
+    }
+
+    /* Bloques de clase más compactos */
+    .class-block {
+        font-size: 0.7rem;
+        padding: 4px 6px 16px 6px;
+    }
+
+    .class-time {
+        font-size: 0.6rem;
+    }
+
+    /* Modales ajustados */
+    .modal-content {
+        width: 95%;
+        padding: 20px 15px;
+    }
+
+    form label,
+    form fieldset {
+        margin-bottom: 12px;
+    } }
+
+        /* Evitar zoom automático en inputs */
+        input,
+        select,
+        textarea {
+            font-size: 16px !important;
+        }
+    
+        /* Asegurar que los elementos no excedan el ancho */
+        * {
+            max-width: 100%;
+            box-sizing: border-box; }
