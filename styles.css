@@ -1,0 +1,598 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #121212;
+    color: #CCCCCC;
+    margin: 40px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+h1 {
+    font-weight: 600;
+    font-size: 2.8rem;
+    margin-bottom: 28px;
+    color: #2962ff;
+    letter-spacing: 1.2px;
+}
+
+button#openModalBtn {
+    background-color: #2962ff;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.15rem;
+    padding: 14px 44px;
+    border: none;
+    border-radius: 28px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(41, 98, 255, 0.5);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 30px;
+}
+
+button#openModalBtn:hover {
+    background-color: #0039cb;
+    box-shadow: 0 8px 25px rgba(0, 57, 203, 0.6);
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+    max-width: 1100px;
+    background-color: #1e1e1e;
+    border-radius: 16px;
+    box-shadow: 0 10px 35px rgba(41, 98, 255, 0.25);
+    user-select: none;
+    margin-bottom: 50px;
+}
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    padding: 20px 0;
+    margin: 0 auto;
+}
+
+thead th {
+    background-color: #292929;
+    color: #b3b3b3;
+    padding: 12px 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border-right: 1px solid #3a3a3a;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 120px;
+}
+
+thead th:last-child {
+    border-right: none;
+}
+
+tbody th {
+    background-color: #2f2f2f;
+    color: #7d7d7d;
+    font-weight: 600;
+    padding: 16px 22px;
+    font-size: 0.9rem;
+    border-bottom: 1px solid #3a3a3a;
+    text-align: center;
+    width: 100px;
+    user-select: none;
+}
+
+tbody td {
+    border-bottom: 1px solid #3a3a3a;
+    border-right: 1px solid #3a3a3a;
+    position: relative;
+    height: 68px;
+    padding: 2px 4px;
+    vertical-align: top;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+tbody td {
+    background-color: transparent !important;
+}
+
+tbody td:hover {
+    background-color: transparent !important;
+}
+
+.class-block:hover {
+    background-color: #2962ff !important;
+    /* O el color correspondiente a la modalidad */
+}
+
+.class-block.presencial:hover {
+    background-color: #0047bb !important;
+}
+
+.class-block.virtual:hover {
+    background-color: #1a237e !important;
+}
+
+tbody td:not(:empty):hover,
+tbody td:hover .class-block {
+    background-color: #333333;
+}
+
+tbody td:last-child {
+    border-right: none;
+}
+
+.td-container {
+    position: relative;
+    height: 68px;
+    overflow: visible;
+    padding: 0 4px;
+}
+
+.class-block {
+    margin: 2px 0;
+    position: absolute;
+    left: 8px;
+    right: 8px;
+    border-radius: 14px;
+    color: #fff;
+    font-weight: 600;
+    padding: 8px 12px 22px 12px;
+    box-sizing: border-box;
+    cursor: default;
+    font-size: 0.85rem;
+    box-shadow: 0 6px 15px rgba(41, 98, 255, 0.5);
+    background-color: #2962ff;
+    line-height: 1.4;
+    user-select: none;
+    transition: all 0.2s ease;
+    overflow: hidden;
+    white-space: normal;
+    word-wrap: break-word;
+    min-height: 40px;
+}
+
+.class-block strong {
+    display: block;
+    margin-bottom: 2px;
+}
+
+.class-block.presencial {
+    background-color: #0047bb;
+    box-shadow: 0 8px 22px rgba(0, 71, 187, 0.6);
+}
+
+.class-block.virtual {
+    background-color: #1a237e;
+    box-shadow: 0 8px 22px rgba(26, 35, 126, 0.6);
+}
+
+.class-block:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(41, 98, 255, 0.6);
+    z-index: 10;
+}
+
+.class-time {
+    font-size: 0.75rem;
+    opacity: 0.9;
+    margin-top: 2px;
+    display: block;
+    position: absolute;
+    bottom: 8px;
+    left: 12px;
+    right: 12px;
+}
+
+.btn-delete {
+    position: absolute;
+    bottom: 10px;
+    right: 14px;
+    background-color: #ff3b30;
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-weight: 700;
+    font-size: 18px;
+    width: 28px;
+    height: 28px;
+    line-height: 24px;
+    cursor: pointer;
+    box-shadow: 0 3px 10px #ff3b30cc;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-delete:hover {
+    background-color: #cc2a23;
+    box-shadow: 0 6px 22px #cc2a23cc;
+}
+
+/* Modal */
+.modal-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(18, 18, 18, 0.95);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#editModalContent {
+    background: #222222;
+    padding: 24px 28px;
+    border-radius: 20px;
+    width: 420px;
+    max-width: 95%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 15px 35px rgba(41, 98, 255, 0.7);
+    position: relative;
+    color: #ccc;
+    font-weight: 500;
+    font-size: 15px;
+    z-index: 1401;
+}
+
+.modal-bg.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-content {
+    background: #222222;
+    padding: 24px 28px;
+    border-radius: 20px;
+    width: 420px;
+    max-width: 95%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 15px 35px rgba(41, 98, 255, 0.7);
+    position: relative;
+    color: #ccc;
+    font-weight: 500;
+    font-size: 15px;
+    z-index: 1001;
+}
+
+#closeModalBtn {
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    font-size: 28px;
+    line-height: 24px;
+    color: #2962ff;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+#closeModalBtn:hover {
+    color: #0039cb;
+}
+
+form label,
+form fieldset {
+    display: block;
+    margin-bottom: 18px;
+    font-size: 15px;
+    color: #aaa;
+}
+
+form fieldset {
+    border: 1.5px solid #2962ff;
+    padding: 14px 18px;
+    border-radius: 14px;
+    background: #1c1c1c;
+}
+
+form legend {
+    font-weight: 600;
+    font-size: 16px;
+    color: #2962ff;
+    padding: 0 8px;
+}
+
+form label>input[type="text"],
+form label>input[type="time"],
+form label>select {
+    width: 100%;
+    padding: 12px 16px;
+    margin-top: 6px;
+    border-radius: 14px;
+    border: 1.8px solid #2962ff;
+    font-size: 15px;
+    font-weight: 600;
+    color: #ddd;
+    background-color: #222222;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+form label>input[type="text"]:focus,
+form label>input[type="time"]:focus,
+form label>select:focus {
+    outline: none;
+    border-color: #0039cb;
+    box-shadow: 0 0 18px #0039cbcc;
+}
+
+form fieldset label {
+    font-weight: 600;
+    color: #2962ff;
+    margin-right: 10px;
+    cursor: pointer;
+    user-select: none;
+    font-size: 14px;
+}
+
+form fieldset input[type="checkbox"] {
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+form button[type="submit"] {
+    width: 100%;
+    background-color: #2962ff;
+    color: white;
+    font-weight: 700;
+    border: none;
+    padding: 14px;
+    font-size: 1.05rem;
+    border-radius: 28px;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(41, 98, 255, 0.7);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+form button[type="submit"]:hover {
+    background-color: #0039cb;
+    box-shadow: 0 12px 38px rgba(0, 57, 203, 0.85);
+    transform: scale(1.05);
+}
+
+/* Tooltip */
+.tooltip {
+    position: absolute;
+    pointer-events: none;
+    background: #2962ffdd;
+    color: #fff;
+    padding: 10px 14px;
+    font-size: 14px;
+    border-radius: 10px;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    white-space: pre-line;
+    z-index: 2300;
+    max-width: 260px;
+    box-shadow: 0 8px 22px rgba(41, 98, 255, 0.75);
+    font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .modal-content {
+        padding: 20px 16px;
+        width: 95%;
+    }
+
+    form label,
+    form fieldset {
+        margin-bottom: 10px;
+    }
+
+    form fieldset {
+        padding: 8px 12px;
+    }
+
+    h1 {
+        font-size: 2.2rem;
+    }
+
+    button#openModalBtn {
+        width: 100%;
+    }
+
+    table {
+        font-size: 14px;
+        max-width: 100%;
+    }
+
+    .modal-content {
+        width: 95%;
+        padding: 30px 20px;
+    }
+
+    body {
+        margin: 30px 15px;
+    }
+
+    thead th {
+        font-size: 0.8rem;
+        padding: 8px 4px;
+    }
+
+    .class-block {
+        font-size: 0.75rem;
+        padding: 6px 8px 18px 8px;
+    }
+
+    .class-time {
+        font-size: 0.65rem;
+    }
+}
+
+/* Estilo para el fondo del modal */
+#modalBg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+/* Cuando se activa el modal */
+#modalBg.active {
+    display: flex;
+}
+
+/* Contenedor del modal */
+#classFormContainer {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-height: 90vh;
+    overflow-y: auto;
+    width: 100%;
+    max-width: 500px;
+    box-sizing: border-box;
+}
+
+.swal2-container {
+    z-index: 2000 !important; }
+
+/* Estilos para el modal de edición */
+#editModalBg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(18, 18, 18, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1400;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.form-actions button {
+    flex: 1;
+    padding: 10px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Botón de eliminar */
+#deleteClassBtn {
+    background-color: #ff3b30;
+    color: white;
+    font-weight: 600;
+    border: 1px solid #ff3b30;
+    padding: 14px;
+    font-size: 1rem;
+    border-radius: 28px;
+    cursor: pointer;
+    width: 48%;
+    transition: background-color 0.3s ease;
+}
+
+/* Botón de guardar */
+#editClassForm button[type="submit"] {
+    background-color: #2962ff;
+    color: white;
+    border: 1px solid #2962ff;
+}
+
+#editClassForm button[type="submit"]:hover {
+    background-color: #1a53ff;
+    box-shadow: 0 5px 12px rgba(41, 98, 255, 0.3);
+    transform: translateY(-1px);
+}
+
+/* Iconos para los botones (opcional) */
+.form-actions button::before {
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 6px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#deleteClassBtn::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z'/%3E%3C/svg%3E");
+}
+
+#editClassForm button[type='submit']::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z'/%3E%3C/svg%3E");
+}
+
+/* Ajustes para móviles */
+@media (max-width: 600px) {
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .form-actions button {
+        width: 100%;
+    }
+}
+
+#deleteClassBtn:hover {
+    background-color: #e0352b;
+    box-shadow: 0 5px 12px rgba(255, 59, 48, 0.3);
+    transform: translateY(-1px);
+}
+
+/* Quitar el botón de eliminar de las clases */
+.btn-delete {
+    display: none;
+}
+
+/* Hacer las celdas clickables */
+tbody td {
+    cursor: pointer;
+}
+
+/* Aumentar el ancho de las celdas de días */
+thead th:not(:first-child) {
+    width: 180px;
+    min-width: 180px;
+}
+
+/* Ajustar el ancho de la columna de horas */
+tbody th {
+    width: 100px;
+}
+
+/* Ajustar el padding para mejor espaciado */
+thead th {
+    padding: 12px 8px;
+}
+

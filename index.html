@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Horario de Clases</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+
+    <h1>Horario de Clases</h1>
+    <button id="openModalBtn">Agregar Clase</button>
+
+    <table id="scheduleTable">
+        <thead>
+            <tr id="scheduleHeader"></tr>
+        </thead>
+        <tbody id="scheduleBody"></tbody>
+    </table>
+
+    <!-- Modal para agregar clase -->
+    <div id="modalBg" class="modal-bg">
+        <div class="modal-content">
+            <button id="closeModalBtn" aria-label="Cerrar modal">&times;</button>
+            <form id="classForm">
+                <label>
+                    Nombre de la clase:
+                    <input type="text" name="className" required />
+                </label>
+                <fieldset>
+                    <legend>Días</legend>
+                    <label><input type="checkbox" name="days" value="Lunes" />Lunes</label>
+                    <label><input type="checkbox" name="days" value="Martes" />Martes</label>
+                    <label><input type="checkbox" name="days" value="Miércoles" />Miércoles</label>
+                    <label><input type="checkbox" name="days" value="Jueves" />Jueves</label>
+                    <label><input type="checkbox" name="days" value="Viernes" />Viernes</label>
+                </fieldset>
+                <label>
+                    Hora inicio:
+                    <input type="time" name="startTime" required />
+                </label>
+                <label>
+                    Hora fin:
+                    <input type="time" name="endTime" required />
+                </label>
+                <label>
+                    Profesor:
+                    <input type="text" name="profesor" required />
+                </label>
+                <label>
+                    Modalidad:
+                    <select name="modalidad" required>
+                        <option value="Presencial">Presencial</option>
+                        <option value="Virtual">Virtual</option>
+                        <option value="Asincronica">Asincronica</option>
+                    </select>
+                </label>
+                <label>
+                    Aula:
+                    <input type="text" name="aula" required />        </label>
+                <button type="submit">Agregar</button>
+            </form>
+        </div>
+    </div>
+
+<!-- Modal para editar/eliminar clase -->
+<div id="editModalBg" class="modal-bg">
+    <div class="modal-content">
+        <button id="closeEditModalBtn" aria-label="Cerrar modal">&times;</button>
+        <div id="editFormContainer">
+            <h2>Editar Clase</h2>
+            <form id="editClassForm">
+                <input type="hidden" name="editIndex" id="editIndex">
+                <label>
+                    Nombre de la clase:
+                    <input type="text" name="editClassName" id="editClassName" required />
+                </label>
+                <label>
+                    Aula:
+                    <input type="text" name="editAula" id="editAula" required />
+                </label>
+                <fieldset>
+                    <legend>Días</legend>
+                    <label><input type="checkbox" name="editDays" value="Lunes" />Lunes</label>
+                    <label><input type="checkbox" name="editDays" value="Martes" />Martes</label>
+                    <label><input type="checkbox" name="editDays" value="Miércoles" />Miércoles</label>
+                    <label><input type="checkbox" name="editDays" value="Jueves" />Jueves</label>
+                    <label><input type="checkbox" name="editDays" value="Viernes" />Viernes</label>
+                </fieldset>
+                <label>
+                    Hora inicio:
+                    <input type="time" name="editStartTime" id="editStartTime" required />
+                </label>
+                <label>
+                    Hora fin:
+                    <input type="time" name="editEndTime" id="editEndTime" required />
+                </label>
+                <label>
+                    Profesor:
+                    <input type="text" name="editProfesor" id="editProfesor" required />
+                </label>
+                <label>
+                    Modalidad:
+                    <select name="editModalidad" id="editModalidad" required>
+                        <option value="Presencial">Presencial</option>
+                        <option value="Virtual">Virtual</option>
+                    </select>
+                </label>
+                <div class="form-actions">
+                    <button type="button" id="deleteClassBtn">Eliminar Clase</button>
+                    <button type="submit">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+    <div id="tooltip" class="tooltip"></div>
+
+    <script src="script.js"></script>
+    
+</body>
+
+</html>
